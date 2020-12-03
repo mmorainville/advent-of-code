@@ -19,12 +19,9 @@ function countTrees (map, slope) {
 
   while (position.y < map.length - 1) {
     position.y += slope.y
+    position.x += slope.x
 
-    if (!map[position.y][position.x + slope.x]) {
-      position.x = position.x - map[position.y].length + slope.x
-    } else {
-      position.x += slope.x
-    }
+    position.x = position.x % map[position.y].length
 
     path.push(map[position.y][position.x])
     // console.log(position.y, position.x, map[position.y][position.x])
