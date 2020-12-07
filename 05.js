@@ -21,6 +21,24 @@ function solveOne (inputs) {
   return Math.max(...seatIds)
 }
 
+function solveTwo (inputs) {
+  seatIds = []
+  inputs.forEach(input => {
+    seatIds.push(getSeatId(input))
+  })
+  seatIds = seatIds.sort()
+
+  missingSeatIds = []
+
+  for (let i = 0; i < seatIds.length - 1; i++) {
+    if (seatIds[i] + 1 !== seatIds[i + 1]) {
+      missingSeatIds.push(seatIds[i] + 1)
+    }
+  }
+
+  return missingSeatIds[0]
+}
+
 function getRowOrColumn (input) {
   let indexes = Array.from(Array(Math.pow(2, input.length)).keys())
   input.split('').forEach(letter => {
@@ -49,4 +67,5 @@ function getSeatId (input) {
 
 readInterface.on('close', () => {
   console.log(solveOne(inputs))
+  console.log(solveTwo(inputs))
 });
