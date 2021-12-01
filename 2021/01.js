@@ -31,12 +31,16 @@ function solveFirstProblem(inputs) {
 }
 
 function solveSecondProblem(inputs) {
-  for (i = 0; i <= inputs.length - 3; i++) {
-    console.log(inputs[i])
+  let depthsBySlidingWindow = []
+
+  for (i = 0; i <= inputs.length - 3; i += 1) {
+    depthsBySlidingWindow.push(inputs[i + 0] + inputs[i + 1] + inputs[i + 2])
   }
+
+  solveFirstProblem(depthsBySlidingWindow)
 }
 
 readInterface.on('close', () => {
-  // solveFirstProblem(inputs)
+  solveFirstProblem(inputs)
   solveSecondProblem(inputs)
 });
